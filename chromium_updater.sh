@@ -30,18 +30,18 @@ function download()
 }
 
 function makeDir(){
-	mkdir -p $HOME/chromium/tmp \
-		$HOME/chromium/archives/zip \
-		$HOME/chromium/lastBuild
+	mkdir -p $CPATH/tmp \
+		$CPATH/archives/zip \
+		$CPATH/lastBuild
 }
 
 function unzipChromium(){
-	unzip -oqd chromium/tmp "${a[2]}"
-	rm -rf chromium/lastBuild/*
-	mv chromium/tmp/chrome-linux/* chromium/lastBuild
-	mv chromium/lastBuild/chrome chromium/lastBuild/chromium-browser
-	echo "$rev" > chromium/lastBuild/LAST_CHANGE
-	rm -rf chromium/tmp
+	unzip -oqd $CPATH/tmp "${a[2]}"
+	rm -rf $CPATH/lastBuild/*
+	mv $CPATH/tmp/chrome-linux/* chromium/lastBuild
+	mv $CPATH/lastBuild/chrome chromium/lastBuild/chromium-browser
+	echo "$rev" > $CPATHlastBuild/LAST_CHANGE
+	rm -rf $CPATH/tmp
 }
 
 function getVersion(){
@@ -51,8 +51,8 @@ function getVersion(){
 }
 
 function checkVersion(){
-	if [ -f  chromium/lastBuild/LAST_CHANGE ]; then
-		var=`cat chromium/lastBuild/LAST_CHANGE`
+	if [ -f  $CPATH/lastBuild/LAST_CHANGE ]; then
+		var=`cat $CPATH/lastBuild/LAST_CHANGE`
 
 		if [ "$rev" = "$var" ]; then
 			update=0
@@ -187,7 +187,7 @@ rev="000000"
 var="000000"
 update=1
 
-cpath="chromium"			# chromium path in $HOME
+CPATH=$HOME/chromium			# chromium path in $HOME
 
 ############################################################################
 lineStr='  x                                             x '
