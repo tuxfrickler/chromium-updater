@@ -40,7 +40,7 @@ function unzipChromium(){
 	rm -rf $CPATH/lastBuild/*
 	mv $CPATH/tmp/chrome-linux/* chromium/lastBuild
 	mv $CPATH/lastBuild/chrome chromium/lastBuild/chromium-browser
-	echo "$rev" > $CPATHlastBuild/LAST_CHANGE
+	echo "$rev" > $CPATH/lastBuild/LAST_CHANGE
 	rm -rf $CPATH/tmp
 }
 
@@ -108,28 +108,28 @@ function graphMode(){
 	trap "rm -rf /tmp/.locking;exit 2" 1 2 3 15         # catch interrupt keys like (ctrl + c)
 	
 	msg[1]='  x       .::LAST REVISION DOWNLOADER::.'
-	msg[2]=$lineStr
-	msg[3]=`echo '  x            REVISION:'  "-[$rev]-"`
-	msg[4]=$lineStr
+  msg[2]=$lineStr
+	msg[3]=`echo '  x REV. SERVER' "[$rev]" -- REV. LOCAL "[$var]"` 
+  msg[4]=$lineStr
 	msg[5]='  x      DOWNLOAD IN PROGRES: '
-	msg[6]=$lineStr
+  msg[6]=$lineStr
 	msg[7]=$lineStr
 
 	drawOutput
 	
-	i=0                                                  # set variable 'i'
-	while [ -f /tmp/.locking ]                           # while file exist
-	do                                                   # 
-		i=$(($i+1))                                      # increase variable i by one each time
-		TPUT 13 5 ;P$i                        `echo '  x         REVISION ON SERVER:'  "$rev"`           # put one of P1, P2, P3 or P4 to exact position
+	i=0                                                 # set variable 'i'
+	while [ -f /tmp/.locking ]                          # while file exist
+	do                                                  # 
+		i=$(($i+1))                                       # increase variable i by one each time
+		TPUT 13 5 ;P$i                                    # put one of P1, P2, P3 or P4 to exact position
 
-		if [ "$i" = "3" ]; then                          # make sure that variable 'i' will never
-			unset i                                      # increase over 3
-		fi                                               #
+		if [ "$i" = "3" ]; then                           # make sure that variable 'i' will never
+			unset i                                         # increase over 3
+		fi                                                #
 		
 		TPUT 9 38;
-		sleep 0.1                                        # 0.1 second sleep (100ms)
-	done &                                               # fork a subprocess and execute it in background
+		sleep 0.2                                         # 0.2 second sleep (200ms)
+	done &                                              # fork a subprocess and execute it in background
 	
 	
 	if [ "$update" -eq 1 ]; then
