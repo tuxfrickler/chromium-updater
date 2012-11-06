@@ -17,16 +17,16 @@
  
 function download()
 {
-    local url=$1
-    local dest=$2
+  local url=$1
+  local dest=$2
     
 	touch /tmp/.locking                                  # create an empty control file
 	trap "rm -rf /tmp/.locking;exit 2" 1 2 3 15          # catch interrupt keys (like ctrl+c)
     
-    echo -n "   "
+  echo -n "   "
 	wget --progress=dot --output-document="$dest" $url 2>&1  | grep --line-buffered "%" | \
         sed -u -e "s,\.,,g" | awk '{printf("\b\b\b\b%4s", $2)}'
-    echo -ne "\b\b\b\b"
+  echo -ne "\b\b\b\b"
 }
 
 function makeDir(){
@@ -38,8 +38,8 @@ function makeDir(){
 function unzipChromium(){
 	unzip -oqd $CPATH/tmp "${a[2]}"
 	rm -rf $CPATH/lastBuild/*
-	mv $CPATH/tmp/chrome-linux/* chromium/lastBuild
-	mv $CPATH/lastBuild/chrome chromium/lastBuild/chromium-browser
+	mv $CPATH/tmp/chrome-linux/* $CPATH/lastBuild
+	mv $CPATH/lastBuild/chrome $CPATH/lastBuild/chromium-browser
 	echo "$rev" > $CPATH/lastBuild/LAST_CHANGE
 	rm -rf $CPATH/tmp
 }
@@ -47,7 +47,7 @@ function unzipChromium(){
 function getVersion(){
 	rev=`curl --silent "$url/LAST_CHANGE"`
 	a[1]="$url/$rev/chrome-linux.zip" 
-	a[2]="$HOME/chromium/archives/zip/chromium_rev_$rev.zip"
+	a[2]="$CPATH/archives/zip/chromium_rev_$rev.zip"
 }
 
 function checkVersion(){
@@ -137,7 +137,7 @@ function graphMode(){
 		unzipChromium
 	fi
 	
-	rm -rf /tmp/.locking                                 # remove control file and stop execution
+	rm -rf /tmp/.locking                                # remove control file and stop execution
 	
 	TPUT 15 10
 	echo ""
@@ -202,38 +202,38 @@ msg[7]=$lineStr
 
 case "$1" in
   --silent|-s)
-	makeDir
-	checkVersion
-	getVersion
-    silentMode
-    ;;
+  makeDir
+  getVersion
+  checkVersion
+  silentMode
+  ;;
     
   --xmode|-x)
-	makeDir
-	checkVersion
-	getVersion
-    graphMode
-    ;;
+  makeDir
+  getVersion
+  checkVersion
+  graphMode
+  ;;
     
   --version|-v)
-	version
-	;;
+  version
+  ;;
 	
   --path|-p)
-	setPath
-	;;
+  setPath
+  ;;
 	
   --switch|-w)
-	;;
+  ;;
 	
   --help-?)
-	helpScript
-	;;
+  helpScript
+  ;;
 	
   *)
-	makeDir
+  makeDir
 	getVersion
 	checkVersion
-    silentMode
-    ;;
+  silentMode
+  ;;
 esac
