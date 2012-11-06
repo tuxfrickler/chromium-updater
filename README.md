@@ -1,8 +1,11 @@
 chromium-updater
 ================
 
-updater chromium to last snapshot
-'''
+update chromium x64 to last snapshot
+
+bash chromium_updater.sh -x
+
+```
   ┌───│CHROMIUM UPDATER 0.3│────────────────────┐
   │                                             │ 
   │       .::LAST REVISION DOWNLOADER::.        │ 
