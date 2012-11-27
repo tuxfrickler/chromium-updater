@@ -1,13 +1,12 @@
-# by mendress @ 10/08/2012  
+# by mendress @ 28/11/2012  
 #  
-
-#!/bin/bash
+#!/bin/sh
 
  CLEAR(){ echo -en "\033c";}                            # Predefined functions
  CIVIS(){ echo -en "\033[?25l";}                        # (see description above)
  CNORM(){ echo -en "\033[?12l\033[?25h";}               #
- TPUT(){ echo -en "\033[${1};${2}H";}                  	#
- DRAW(){ echo -en "\033%@";echo -en "\033(0";}         	#
+ TPUT() { echo -en "\033[${1};${2}H";}                  #
+ DRAW() { echo -en "\033%@";echo -en "\033(0";}         #
  WRITE(){ echo -en "\033(B";}                           #
 
  P0(){ echo -n  '/o-[|]-o\';}                           # function P0 (for progress)
@@ -74,27 +73,27 @@ function drawOutput(){
 	for tmp in {1..7}
 	do
 		trim=`echo $((2 + (${#msg[$tmp]}) ))`
+    #echo ${#msg[$tmp]}
 		msg=`echo "$lineStr" | cut -c "$trim"-$((2 + ${#lineStr}))`
-		msg[$tmp]=`echo "${msg[$tmp]}" "$msg"`
+    msg[$tmp]=`echo "${msg[$tmp]}" "$msg"`
 	done
 	
 	CLEAR
 	CIVIS
 	echo -e ""
 	echo -e ""
-	DRAW                                                # switch to drawing mode
-	echo -e "  lqqqxCHROMIUM UPDATER ${shVersion}xqqqqqqqqqqqqqqqqqqqqk"        # draw box lines
+	DRAW    # switch to drawing mode
+	echo -e "  lqqqxCHROMIUM UPDATER ${shVersion}xqqqqqqqqqqqqqqqqqqqqk"  # draw box lines
 	echo -e "$lineStr"
-	echo -e "${msg[1]}"
-	echo -e "${msg[2]}"
-	echo -e "${msg[3]}"
-	echo -e "${msg[4]}"
-	echo -e "${msg[5]}"
-	echo -e "${msg[6]}"
-	echo -e "${msg[7]}"
+  
+  for counter in {1..7}
+  do
+    echo -e "${msg[$counter]}"
+  done
+
 	echo -e "$lineStr"
-	echo -e "  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqxBY MENDRESSxqqqj"        #
-	WRITE                                               # switch back to normal text input mode
+	echo -en "  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqx\e[00;31mBY MENDRESS\e[00mxqqqj"
+	WRITE   # switch back to normal text input mode
 	
 	echo -e ""
 	TPUT 15 10
@@ -169,7 +168,7 @@ function setPath(){
 function version(){
 	getVersion
 	checkVersion
-	msg[1]='  x            .::VERSION CHECK::.'
+  msg[1]='  x            \e[01;34m.::VERSION CHECK::.\e[00m              x'
 	msg[2]=$lineStr
 	msg[3]=`echo '  x         REVISION ON SERVER:'  "$rev"`
 	msg[4]=$lineStr
@@ -180,8 +179,9 @@ function version(){
 	drawOutput
 }
 ###################################################################################
-shVersion="0.3"
+shVersion="0.4"
 
+architecture="x64"
 url="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Linux_x64"
 rev="000000"
 var="000000"
