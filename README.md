@@ -16,11 +16,12 @@ update chromium x64 to last snapshot
   │                                             │  
   │                                             │  
   │                                             │ 
-  └─/o-[\]-o\───────────────────│BY MENDRESS│───┘ ```
+  └─/o-[\]-o\───────────────────│BY MENDRESS│───┘ 
+```
   
 
   
-  ``` bash
+``` bash
   bash chromium_updater.sh --version
   ┌───│CHROMIUM UPDATER 0.4│────────────────────┐
   │                                             │ 
@@ -32,4 +33,5 @@ update chromium x64 to last snapshot
   │                                             │  
   │                                             │  
   │                                             │ 
-  └─────────────────────────────│BY MENDRESS│───┘ ```
+  └─────────────────────────────│BY MENDRESS│───┘ 
+```
