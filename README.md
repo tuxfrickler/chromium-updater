@@ -1,9 +1,10 @@
 chromium-updater
 ================
 
-update chromium x64 to last snapshot
+update chromium x32 or x64 to last snapshot/build
 
-``` bash
+`````bash
+
   bash chromium_updater.sh -x
 
   ┌───│CHROMIUM UPDATER 0.4│────────────────────┐
@@ -17,12 +18,13 @@ update chromium x64 to last snapshot
   │                                             │  
   │                                             │ 
   └─/o-[\]-o\───────────────────│BY MENDRESS│───┘ 
-```
+`````
   
 
   
-``` bash
+`````bash
   bash chromium_updater.sh --version
+  
   ┌───│CHROMIUM UPDATER 0.4│────────────────────┐
   │                                             │ 
   │            .::VERSION CHECK::.              │ 
@@ -34,4 +36,4 @@ update chromium x64 to last snapshot
   │                                             │  
   │                                             │ 
   └─────────────────────────────│BY MENDRESS│───┘ 
-```
+`````
