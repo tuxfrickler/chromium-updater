@@ -3,9 +3,9 @@ chromium-updater
 
 update chromium x64 to last snapshot
 
-bash chromium_updater.sh -x
+``` bash
+  bash chromium_updater.sh -x
 
-```
   ┌───│CHROMIUM UPDATER 0.4│────────────────────┐
   │                                             │ 
   │       .::LAST REVISION DOWNLOADER::.        │ 
@@ -18,9 +18,10 @@ bash chromium_updater.sh -x
   │                                             │ 
   └─/o-[\]-o\───────────────────│BY MENDRESS│───┘ ```
   
-bash chromium_updater.sh --version
+
   
-  ```
+  ``` bash
+  bash chromium_updater.sh --version
   ┌───│CHROMIUM UPDATER 0.4│────────────────────┐
   │                                             │ 
   │            .::VERSION CHECK::.              │ 
@@ -31,10 +32,4 @@ bash chromium_updater.sh --version
   │                                             │  
   │                                             │  
   │                                             │ 
-  └─────────────────────────────│BY MENDRESS│───┘
-
-``` ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
+  └─────────────────────────────│BY MENDRESS│───┘ ```
