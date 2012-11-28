@@ -37,3 +37,27 @@ update chromium x32 or x64 to last snapshot/build
   │                                             │ 
   └─────────────────────────────│BY MENDRESS│───┘ 
 `````
+
+Changelog
+---------
+VERSION 0.4:
+
+* add color support
+
+Version 0.3:
+
+* changed box style
+* remove bugs ;-)
+
+Version 0.2:
+
+* add box style
+
+Version 0.1:
+
+* init release
+
+TODO
+----
+* init log file
+
